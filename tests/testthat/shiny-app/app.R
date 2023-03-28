@@ -1,0 +1,1 @@
+vizard::shiny_app()
