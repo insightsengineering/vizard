@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="api" timestamp="2023-04-19T10:37:59Z" hostname="54ebee927e2d" tests="1" skipped="0" failures="0" errors="1" time="4.045">
+    <testcase time="4.045" classname="api" name="API_greets_the_person">
+      <error type="error" message="Error in `curl::curl_fetch_memory(url, handle = handle)`: Failed to connect to 127.0.0.1 port 9000 after 0 ms: Connection refused ('test-api.R:13:3')">Error in `curl::curl_fetch_memory(url, handle = handle)`: Failed to connect to 127.0.0.1 port 9000 after 0 ms: Connection refused
+Backtrace:
+ 1. httr::GET(...)
+      at test-api.R:13:2
+ 2. httr:::request_perform(req, hu$handle$handle)
+ 4. httr:::request_fetch.write_memory(req$output, req$url, handle)
+ 5. curl::curl_fetch_memory(url, handle = handle)</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="hello" timestamp="2023-04-19T10:38:03Z" hostname="54ebee927e2d" tests="1" skipped="0" failures="0" errors="1" time="0.106">
+    <testcase time="0.106" classname="hello" name="hello_greets_the_entity">
+      <error type="error" message="Error in `hello(&quot;foo&quot;)`: could not find function &quot;hello&quot; ('test-hello.R:2:3')">Error in `hello("foo")`: could not find function "hello"</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="render" timestamp="2023-04-19T10:38:03Z" hostname="54ebee927e2d" tests="1" skipped="0" failures="0" errors="1" time="0.335">
+    <testcase time="0.335" classname="render" name="rendering_functions_work">
+      <error type="error" message="&lt;packageNotFoundError/error/condition&gt; ('test-render.R:11:3')">&lt;packageNotFoundError/error/condition&gt;
+Error in `loadNamespace(x)`: there is no package called 'svglite'
+Backtrace:
+ 1. vizard::render_svg(g)
+      at test-render.R:11:2
+ 2. base::tryCatch(...)
+ 3. base (local) tryCatchList(expr, classes, parentenv, handlers)
+ 4. base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 5. value[[3L]](cond)</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="shiny" timestamp="2023-04-19T10:38:03Z" hostname="54ebee927e2d" tests="1" skipped="0" failures="0" errors="1" time="1.426">
+    <testcase time="1.426" classname="shiny" name="The_Shiny_App_returns_a_proper_greeting">
+      <error type="error" message="Error in `sd_startShiny(self, private, path, seed, loadTimeout, shinyOptions,  ('test-shiny.R:3:3')">Error in `sd_startShiny(self, private, path, seed, loadTimeout, shinyOptions, 
+    renderArgs, options)`: Error starting application:
+Loading required package: shiny
+Error : 'shiny_app' is not an exported object from 'namespace:vizard'
+Backtrace:
+ 1. ShinyDriver$new(...)
+      at test-shiny.R:3:2
+ 2. shinytest (local) initialize(...)
+ 3. shinytest:::sd_initialize(...)
+ 4. private$startShiny(...)
+ 5. shinytest:::sd_startShiny(...)</error>
+    </testcase>
+  </testsuite>
+</testsuites>
