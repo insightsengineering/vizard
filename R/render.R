@@ -14,7 +14,7 @@
 #' @param web_fonts Fonts to be used for the SVG
 #' @param bg Background color of the SVG
 #' @param font_family Font family of the SVG
-#' @param fix_rect if \code{TRUE} a fix rectangle elements will be applied 
+#' @param fix_rect if \code{TRUE} a fix rectangle elements will be applied
 #'  (solves problems with overlayed white rectanges in certain circumstances)
 #' @param ... Additional arguments passed to the SVG device
 #'
@@ -33,7 +33,7 @@ render_svg <- function(g = NULL,
                        font_family = "Lato, sans-serif",
                        fix_rect = T,
                        ...) {
-  if(!inherits(g, "ggplot") && !inherits(g, "call")){
+  if (!inherits(g, "ggplot") && !inherits(g, "call")) {
     rlang::abort(glue::glue("g must be either a `ggplot` object or a `call` object\nCurrently g is a {class(g)}"))
   }
   stopifnot(is.numeric(height))
@@ -46,8 +46,8 @@ render_svg <- function(g = NULL,
     {
       # Open SVG device
       svg <- svglite::svgstring(
-        height = height, 
-        width = width, 
+        height = height,
+        width = width,
         scaling = scaling,
         web_fonts = web_fonts,
         standalone = standalone,
@@ -62,10 +62,10 @@ render_svg <- function(g = NULL,
       dev.off()
       svg <- svg()
       svg <- as.character(svg)
-      #Adjust SVG parameterss
+      # Adjust SVG parameterss
       if (!is.null(font_family)) svg <- vizard:::fix_font(svg, param = "font-family", value = font_family)
       if (!is.null(element_width)) svg <- vizard:::regex_replace_element_parameter(svg, param = "width", value = element_width)
-      if (!is.null(element_height)) svg <-  vizard:::regex_replace_element_parameter(svg, param = "height", value = element_height)
+      if (!is.null(element_height)) svg <- vizard:::regex_replace_element_parameter(svg, param = "height", value = element_height)
       if (fix_rect) svg <- stringr::str_replace(svg, stringr::fixed("/>"), "></rect>")
       # Add Download button
       # TODO: import nessecary functions from other packages
@@ -97,17 +97,14 @@ fix_font <- function(html, param = "font-family", value = "Lato, sans-serif", ol
 }
 
 # Regex replace element parameters
-regex_replace_element_parameter <- function (html, param, value, as_character = FALSE)
-{
-    str <- as.character(html)
-    pattern <- glue::glue("{param}[ =]+'\\S+'")
-    replace <- glue::glue("{param}='{value}'")
-    new_str <- stringr::str_replace(str, pattern, replace)
-    if (as_character) {
-        return(new_str)
-    }
-    else {
-        return(shiny::HTML(new_str))
-    }
+regex_replace_element_parameter <- function(html, param, value, as_character = FALSE) {
+  str <- as.character(html)
+  pattern <- glue::glue("{param}[ =]+'\\S+'")
+  replace <- glue::glue("{param}='{value}'")
+  new_str <- stringr::str_replace(str, pattern, replace)
+  if (as_character) {
+    return(new_str)
+  } else {
+    return(shiny::HTML(new_str))
+  }
 }
-
