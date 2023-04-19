@@ -1,0 +1,6 @@
+
+  # Test changing font family
+  vizard::render_svg(g, 
+                     web_fonts = "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700&family=Playball&display=swa", 
+                     font_family = "Playball"
+  )

@@ -12,7 +12,11 @@ BugReports: https://github.com/insightsengineering/vizard/issues
 Depends:
     R (>= 3.6)
 Imports:
+    ComplexHeatmap,
+    ggplot2,
+    palmerpenguins,
     plumber,
+    rlang,
     shiny,
     stringr
 Suggests:
